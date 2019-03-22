@@ -1,0 +1,11 @@
+/Google-Maps-Client-*
+/.build
+/_build*
+/Build
+MYMETA.*
+!META.json
+/.prove
+.vstags
+.vscode
+._*
+local
