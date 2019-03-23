@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 use HTTP::Tiny;
-use HTTP::Tinyish; # Enables verify_SSL option work on more platforms
+use HTTP::Tinyish; # Enables verify_SSL to work in more environments
 use Carp qw(croak);
 use Encode qw(decode);
 use List::Util qw(any);
@@ -14,6 +14,7 @@ use List::Util qw(any);
 our $VERSION = '0.01';
 
 our $ua = HTTP::Tinyish->new( verify_SSL => 1 );
+our $base_uri = "https://maps.googleapis.com/maps/api/";
 
 sub new {
   my ($class, %args) = @_;
@@ -47,31 +48,38 @@ sub new {
     };
   }
 
-  $args{base_uri} = "https://maps.googleapis.com/maps/api/geocode/$args{output_format}";
-
   bless \%args, $class
 }
 
-sub geocode {
+sub geocode_address {
   my ($self, $data) = @_;
   croak 'Missing address or components.' unless any { $_ } qw(address components);
-  return $self->_get($data)
+  return $self->_get('geocode', $data)
 }
 
 sub reverse_geocode {
 
 }
 
-sub _validate_args {
+sub get_timezone {
+  my ($self, $data) = @_;
 
+  croak 'Missing lat/lng.' unless $$data{lat} && $$data{lng};
+  
+  my $time = $$data{time} ? $$data{time} : time;
+
+  return $self->_get('timezone', {
+    location => "$$data{lat},$$data{lng}",
+    timestamp => $time
+  })
 }
 
 sub _get {
-  my ($self, $data, $options) = @_;
+  my ($self, $api, $data, $options) = @_;
 
   $$data{key} //= $$self{api_key};
 
-  my $res = $ua->get("$$self{base_uri}?" . HTTP::Tiny->www_form_urlencode($data));
+  my $res = $ua->get("$base_uri$api/$$self{output_format}?" . HTTP::Tiny->www_form_urlencode($data));
 
   if($$res{success}) {
     return $$self{decoder}->(decode('utf-8', $$res{content}))
