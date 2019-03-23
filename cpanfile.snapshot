@@ -1,0 +1,174 @@
+# carton snapshot format: version 1.0
+DISTRIBUTIONS
+  Cpanel-JSON-XS-4.10
+    pathname: R/RU/RURBAN/Cpanel-JSON-XS-4.10.tar.gz
+    provides:
+      Cpanel::JSON::XS 4.10
+      Cpanel::JSON::XS::Type undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      Pod::Text 2.08
+  File-Which-1.23
+    pathname: P/PL/PLICEASE/File-Which-1.23.tar.gz
+    provides:
+      File::Which 1.23
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5.006
+  HTTP-Tinyish-0.15
+    pathname: M/MI/MIYAGAWA/HTTP-Tinyish-0.15.tar.gz
+    provides:
+      HTTP::Tinyish 0.15
+      HTTP::Tinyish::Base undef
+      HTTP::Tinyish::Curl undef
+      HTTP::Tinyish::HTTPTiny undef
+      HTTP::Tinyish::LWP undef
+      HTTP::Tinyish::Wget undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Which 0
+      HTTP::Tiny 0.055
+      IPC::Run3 0
+      parent 0
+      perl 5.008001
+  IPC-Run3-0.048
+    pathname: R/RJ/RJBS/IPC-Run3-0.048.tar.gz
+    provides:
+      IPC::Run3 0.048
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0.31
+      Time::HiRes 0
+  JSON-MaybeXS-1.004000
+    pathname: H/HA/HAARG/JSON-MaybeXS-1.004000.tar.gz
+    provides:
+      JSON::MaybeXS 1.004000
+    requirements:
+      Carp 0
+      Cpanel::JSON::XS 2.3310
+      ExtUtils::MakeMaker 0
+      JSON::PP 2.27300
+      Scalar::Util 0
+      perl 5.006
+  Module-Build-0.4224
+    pathname: L/LE/LEONT/Module-Build-0.4224.tar.gz
+    provides:
+      Module::Build 0.4224
+      Module::Build::Base 0.4224
+      Module::Build::Compat 0.4224
+      Module::Build::Config 0.4224
+      Module::Build::Cookbook 0.4224
+      Module::Build::Dumper 0.4224
+      Module::Build::Notes 0.4224
+      Module::Build::PPMMaker 0.4224
+      Module::Build::Platform::Default 0.4224
+      Module::Build::Platform::MacOS 0.4224
+      Module::Build::Platform::Unix 0.4224
+      Module::Build::Platform::VMS 0.4224
+      Module::Build::Platform::VOS 0.4224
+      Module::Build::Platform::Windows 0.4224
+      Module::Build::Platform::aix 0.4224
+      Module::Build::Platform::cygwin 0.4224
+      Module::Build::Platform::darwin 0.4224
+      Module::Build::Platform::os2 0.4224
+      Module::Build::PodParser 0.4224
+    requirements:
+      CPAN::Meta 2.142060
+      CPAN::Meta::YAML 0.003
+      Cwd 0
+      Data::Dumper 0
+      ExtUtils::CBuilder 0.27
+      ExtUtils::Install 0
+      ExtUtils::Manifest 0
+      ExtUtils::Mkbootstrap 0
+      ExtUtils::ParseXS 2.21
+      File::Basename 0
+      File::Compare 0
+      File::Copy 0
+      File::Find 0
+      File::Path 0
+      File::Spec 0.82
+      File::Temp 0.15
+      Getopt::Long 0
+      Module::Metadata 1.000002
+      Parse::CPAN::Meta 1.4401
+      Perl::OSType 1
+      Pod::Man 2.17
+      TAP::Harness 3.29
+      Test::More 0.49
+      Text::Abbrev 0
+      Text::ParseWords 0
+      perl 5.006001
+      version 0.87
+  Syntax-Keyword-Try-0.09
+    pathname: P/PE/PEVANS/Syntax-Keyword-Try-0.09.tar.gz
+    provides:
+      Syntax::Keyword::Try 0.09
+    requirements:
+      ExtUtils::CBuilder 0
+      Module::Build 0.4004
+      perl 5.014
+  URI-1.76
+    pathname: O/OA/OALDERS/URI-1.76.tar.gz
+    provides:
+      URI 1.76
+      URI::Escape 3.31
+      URI::Heuristic 4.20
+      URI::IRI 1.76
+      URI::QueryParam 1.76
+      URI::Split 1.76
+      URI::URL 5.04
+      URI::WithBase 2.20
+      URI::data 1.76
+      URI::file 4.21
+      URI::file::Base 1.76
+      URI::file::FAT 1.76
+      URI::file::Mac 1.76
+      URI::file::OS2 1.76
+      URI::file::QNX 1.76
+      URI::file::Unix 1.76
+      URI::file::Win32 1.76
+      URI::ftp 1.76
+      URI::gopher 1.76
+      URI::http 1.76
+      URI::https 1.76
+      URI::ldap 1.76
+      URI::ldapi 1.76
+      URI::ldaps 1.76
+      URI::mailto 1.76
+      URI::mms 1.76
+      URI::news 1.76
+      URI::nntp 1.76
+      URI::pop 1.76
+      URI::rlogin 1.76
+      URI::rsync 1.76
+      URI::rtsp 1.76
+      URI::rtspu 1.76
+      URI::sftp 1.76
+      URI::sip 1.76
+      URI::sips 1.76
+      URI::snews 1.76
+      URI::ssh 1.76
+      URI::telnet 1.76
+      URI::tn3270 1.76
+      URI::urn 1.76
+      URI::urn::isbn 1.76
+      URI::urn::oid 1.76
+    requirements:
+      Carp 0
+      Cwd 0
+      Data::Dumper 0
+      Encode 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      MIME::Base64 2
+      Net::Domain 0
+      Scalar::Util 0
+      constant 0
+      integer 0
+      overload 0
+      parent 0
+      perl 5.008001
+      strict 0
+      utf8 0
+      warnings 0

@@ -37,7 +37,12 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008005"
+            "Carp" : "0",
+            "Encode" : "0",
+            "HTTP::Tiny" : "0",
+            "HTTP::Tinyish" : "0",
+            "List::Util" : "0",
+            "perl" : "v5.28.1"
          }
       },
       "test" : {
@@ -47,6 +52,17 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/marlencrabapple/Google-Maps-Client/issues"
+      },
+      "homepage" : "https://github.com/marlencrabapple/Google-Maps-Client",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/marlencrabapple/Google-Maps-Client.git",
+         "web" : "https://github.com/marlencrabapple/Google-Maps-Client"
+      }
+   },
    "version" : "0.01",
    "x_generated_by_perl" : "v5.28.1",
    "x_serialization_backend" : "Cpanel::JSON::XS version 4.10",

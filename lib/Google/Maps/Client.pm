@@ -1,10 +1,88 @@
 package Google::Maps::Client;
 
+use v5.28;
+
 use strict;
-use 5.008_005;
+use warnings;
+
+use HTTP::Tiny;
+use HTTP::Tinyish; # Enables verify_SSL option work on more platforms
+use Carp qw(croak);
+use Encode qw(decode);
+use List::Util qw(any);
+
 our $VERSION = '0.01';
 
-1;
+our $ua = HTTP::Tinyish->new( verify_SSL => 1 );
+
+sub new {
+  my ($class, %args) = @_;
+  
+  croak 'No API key.' unless $args{api_key};
+
+  $args{output_format} = 'json' unless $args{output_format};
+
+  if($args{decoder}) {
+    croak "Response decoder must be a code ref" unless ref $args{decoder} eq 'CODE';
+  }
+  else {
+    if($args{output_format} eq 'json') {
+      $args{decoder_class} = 'Google::Maps::JSON'
+    }
+    elsif($args{output_format} eq 'xml') {
+      $args{decoder_class} = 'Google::Maps::XML'
+    }
+    else {
+      croak "Invalid output format '$args{output_format}'."
+    }
+
+    $args{decoder_path} = $args{decoder_class};
+    $args{decoder_path} =~ s/::/\//g;
+    require "$args{decoder_path}.pm";
+
+    $args{decoder} = sub {
+      no strict 'refs';
+      "$args{decoder_class}::unserialize"->(@_);
+      use strict
+    };
+  }
+
+  $args{base_uri} = "https://maps.googleapis.com/maps/api/geocode/$args{output_format}";
+
+  bless \%args, $class
+}
+
+sub geocode {
+  my ($self, $data) = @_;
+  croak 'Missing address or components.' unless any { $_ } qw(address components);
+  return $self->_get($data)
+}
+
+sub reverse_geocode {
+
+}
+
+sub _validate_args {
+
+}
+
+sub _get {
+  my ($self, $data, $options) = @_;
+
+  $$data{key} //= $$self{api_key};
+
+  my $res = $ua->get("$$self{base_uri}?" . HTTP::Tiny->www_form_urlencode($data));
+
+  if($$res{success}) {
+    return $$self{decoder}->(decode('utf-8', $$res{content}))
+  }
+  else {
+    croak "$$res{status} - $$res{reason}:\n\n$$res{content}";
+  }
+}
+
+1
+
 __END__
 
 =encoding utf-8
