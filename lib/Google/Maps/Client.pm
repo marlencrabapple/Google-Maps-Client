@@ -53,7 +53,7 @@ sub new {
 
 sub geocode_address {
   my ($self, $data) = @_;
-  croak 'Missing address or components.' unless any { $_ } qw(address components);
+  croak 'Missing address or components.' unless any { $$data{$_} } qw(address components);
   return $self->_get('geocode', $data)
 }
 
