@@ -24,7 +24,7 @@ sub new {
   $args{output_format} = 'json' unless $args{output_format};
 
   if($args{decoder}) {
-    croak "Response decoder must be a code ref" unless ref $args{decoder} eq 'CODE';
+    croak 'Response decoder must be a code ref.' unless ref $args{decoder} eq 'CODE';
   }
   else {
     if($args{output_format} eq 'json') {
@@ -58,20 +58,22 @@ sub geocode_address {
 }
 
 sub reverse_geocode {
-
+  my ($self, $data) = @_;
+  croak 'Missing latitude and longitude.' unless $$data{latlng};
+  return $self->_get('geocode', $data)
 }
 
 sub get_timezone {
   my ($self, $data) = @_;
 
-  croak 'Missing lat/lng.' unless $$data{lat} && $$data{lng};
-  
-  my $time = $$data{time} ? $$data{time} : time;
+  croak 'Missing location.' unless $$data{location};
+  $$data{timestamp} //= time;
 
-  return $self->_get('timezone', {
-    location => "$$data{lat},$$data{lng}",
-    timestamp => $time
-  })
+  my $res = $self->_get('timezone', $data);
+
+  delete $$data{timestamp};
+
+  return $res
 }
 
 sub _get {
